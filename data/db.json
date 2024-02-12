@@ -1,32 +1,11 @@
 {
   "posts": [
     {
-      "titleValue": "ttttttt",
-      "bodyValue": "tttttttt",
-      "itValue": "ttttt",
-      "userIdValue": 1,
-      "id": "76b7"
-    },
-    {
-      "id": "cf16",
-      "userId": null,
-      "it": "1",
-      "title": " good",
-      "body": "mike  made it work well"
-    },
-    {
       "id": "3b8e",
       "userId": "21",
       "it": "12",
-      "title": "lckmo",
-      "body": "yes yes"
-    },
-    {
-      "id": "bf95",
-      "userId": "1",
-      "it": "may",
-      "title": "redirect",
-      "body": "fetch redirect"
+      "title": "fine ",
+      "body": "fine"
     },
     {
       "id": "d1e8",
@@ -34,20 +13,6 @@
       "it": "may",
       "title": "nip",
       "body": "kxnxix"
-    },
-    {
-      "titleValue": "yyyy",
-      "bodyValue": "yyyy",
-      "itValue": "yyyy",
-      "userIdValue": "3",
-      "id": "2e80"
-    },
-    {
-      "id": "68e7",
-      "userId": "1",
-      "it": "n",
-      "title": "m,ike",
-      "body": "mike"
     }
   ]
 }

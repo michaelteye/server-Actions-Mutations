@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import { editPost } from "@/app/api/api";
 
 interface EditPostProps {
   id: string;
@@ -33,10 +34,10 @@ const EditPostForm: React.FC<EditPostProps> = ({ id, userId, it, title, body }) 
     e.preventDefault();
 
     try {
-      // Update post logic goes here
-      console.log("Form data submitted:", formData);
-      router.refresh()
-      router.push("/posts"); // Redirect to posts page after successful submission
+      const updatedPostData = { ...formData, id }; // Include the post ID in the updated data
+      await editPost(updatedPostData); // Call a function to update the post with the new data
+      console.log("Updating post with data:", updatedPostData);
+      router.push("/posts"); // After successfully updating the post, redirect to the posts page
     } catch (error) {
       console.error("Error in submitting the form:", error);
     }

@@ -1,6 +1,7 @@
 import { getPost,deletePost } from "@/app/api/api";
 import Link from "next/link";
 import HandleDelete from "@/app/(articles)/deletepost/action";
+import DeleteBtn from "@/app/(articles)/deletepost/DeleteBtn";
 
 export default async function PostDetails({
   params: { postId },
@@ -22,7 +23,7 @@ export default async function PostDetails({
           <Link className="bg-white text-blue-400 p-4 rounded-md" href={`/${postId}`}>
             Edit
           </Link>
-          <HandleDelete postId={post.id}/>
+          <DeleteBtn id={post.id} />
         </div>
       </div>
     </div>

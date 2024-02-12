@@ -5,7 +5,7 @@ export const getAllPost = async () =>{
     try{
         const response = await fetch(`${baseUrl}`,{
             cache:"no-store",
-            next:{ revalidate:3600},
+            next:{ revalidate:0 } ,
         });
         const posts = response.json() 
         if(!posts){
