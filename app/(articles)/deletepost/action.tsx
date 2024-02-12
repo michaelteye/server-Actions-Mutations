@@ -1,16 +1,26 @@
-import { revalidatePath } from "next/cache";
+"use client"
+import React from 'react'
+import { deletePost } from '@/app/api/api'
+import { useRouter } from "next/navigation";
 
-
-export async function deletePost(id:string):Promise<void>{
-    try{
-       await fetch(`http://localhost:8000/posts/${id}`,{
-            method:'DELETE'
-        });
-        
-    }
-    catch(error){
-        console.error('Error deleting post:', error)
-        
-    }
+interface HandleDeleteProps {
+  postId: string;
 }
-    
+
+const HandleDelete:React.FC<HandleDeleteProps> =({ postId })=>{
+    const router = useRouter();
+  const handleDeletePost = async () =>{
+    await deletePost(postId);
+    console.log('the task has been deleted savely')
+    router.refresh()
+    // Handle any additional logic
+  };
+  return (
+    <button
+      onClick={handleDeletePost}
+      className="bg-white text-blue-400 p-4 rounded-md">
+      delete
+    </button>
+  );
+}
+export default HandleDelete

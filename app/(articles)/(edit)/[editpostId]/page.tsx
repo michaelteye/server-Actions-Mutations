@@ -1,45 +1,40 @@
 'use client'
-import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
-import { editPost, getPost } from '@/app/api/api';
-import EditPost from './editForm';
-import { EditPostProps } from './editForm';
+import { useEffect, useState } from "react";
+import { getPost } from "@/app/api/api";
+import EditPostForm from "./editForm";
 
-export default function PostEdit({
-    params: { editpostId },
-}: {
-    params: {
-        editpostId: string;
+interface PostData {
+  id: string;
+  userId: number;
+  it: number;
+  title: string;
+  body: string;
+}
+
+export default function EditPost({ params: { editpostId } }: { params: { editpostId: string } }) {
+  const [postData, setPostData] = useState<PostData | null>(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const post = await getPost(editpostId);
+        if (post) {
+          setPostData(post);
+        } else {
+          console.error("Failed to fetch post");
+        }
+      } catch (error) {
+        console.error(error);
+      }
     };
-}) {
-    const [post, setPost] = useState<EditPostProps | null>(null);
-    useEffect(() => {
-        // Fetch the post data using the editpostId
-        const fetchPost = async () => {
-            try {
-                const postData = await getPost(editpostId);
-                setPost(postData);
-            } catch (error) {
-                console.error('Error fetching post:', error);
-            }
-        };
-        fetchPost();
-    }, [editpostId]);
 
-    return (
-        <div>
-            <h1 className='text-black'>Edit Post</h1>
-            {post ? (
-                <EditPost
-                    id={editpostId} // Pass the editpostId to the EditPost component
-                    userId={post.userId}
-                    it={post.it}
-                    title={post.title}
-                    body={post.body}
-                />
-            ) : (
-                <p>Loading...</p>
-            )}
-        </div>
-    );
+    fetchData();
+  }, [editpostId]);
+
+  if (!postData) {
+    // Optional: Add loading state
+    return null;
+  }
+
+  return <EditPostForm {...postData} />;
 }
