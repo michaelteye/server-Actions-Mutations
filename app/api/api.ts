@@ -1,6 +1,32 @@
 import { postDataProps } from "../types/post"
 const baseUrl = 'http://localhost:8000/posts'
 
+
+export const AddPost = async (formData:FormData) =>{
+    const userId = formData.get('userId');
+    const it = formData.get('it')
+    const title = formData.get('title')
+    const body = formData.get('body')
+    try{
+        const response = await fetch(`http://localhost:8000/posts`,{
+            method:"POST",
+            headers:{
+                'Content-Type':'application/json',
+            },
+            body:JSON.stringify({userId, it, title, body})
+        })
+        if(!response.ok){
+            throw new Error("Server error")
+
+        }
+        const results = response.json()
+        return results
+
+    }
+    catch(err:any){
+        throw new  Error(err.message)
+    }
+}
 export const getAllPost = async () =>{
     try{
         const response = await fetch(`${baseUrl}`,{

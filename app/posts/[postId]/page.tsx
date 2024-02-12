@@ -1,7 +1,7 @@
 import { getPost,deletePost } from "@/app/api/api";
 import Link from "next/link";
-import HandleDelete from "@/app/(articles)/deletepost/action";
-import DeleteBtn from "@/app/(articles)/deletepost/DeleteBtn";
+import HandleDelete from "@/app/(postInfo)/deletepost/action";
+import DeleteBtn from "@/app/(postInfo)/deletepost/DeleteBtn";
 
 export default async function PostDetails({
   params: { postId },

@@ -1,8 +1,8 @@
 "use client";
-import { addComment } from "../../services/actions/comment";
 import Button from "../../components/Button";
 import { useRef } from "react";
 import { useRouter } from "next/navigation";
+import { AddPost } from "@/app/api/api";
 import React from "react";
 interface commentInfo {
   userId: number;
@@ -13,21 +13,23 @@ interface commentInfo {
 const CreateNewPost = (props: commentInfo) => {
   const router = useRouter();
   const ref = useRef<HTMLFormElement>(null);
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    try {
-      const results = await addComment(formData);
-      console.log("the result is >>>", results);
-      if (!results) alert("Failed to post the comment");
-      router.push("/allPost");
-    } catch (error) {
-      console.log("Error in Submitting the Comment");
-    }
-  };
+  // const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+  //   const formData = new FormData(e.currentTarget);
+  //   try {
+  //     const results = await AddPost(formData);
+  //     console.log("the result is >>>", results);
+  //     if (!results) alert("Failed to post the comment");
+  //     router.push("/posts");
+  //   } catch (error) {
+  //     console.log("Error in Submitting the Comment");
+  //   }
+  // };
 
   return (
-    <form ref={ref} onSubmit={handleSubmit} className="text-center my-auto">
+    <form ref={ref} 
+    action={AddPost}
+    className="text-center my-auto">
       <input
         className="text-black border-2 my-2 text-center"
         type="number"
